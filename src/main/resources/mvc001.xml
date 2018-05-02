@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 				
+      xmlns="http://www.springframework.org/schema/beans"				
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"				
+	  xmlns:mvc="http://www.springframework.org/schema/mvc"			
+	  xmlns:context="http://www.springframework.org/schema/context"			
+      xsi:schemaLocation="				
+      http://www.springframework.org/schema/context				
+      http://www.springframework.org/schema/context/spring-context-3.0.xsd				
+	  http://www.springframework.org/schema/beans 			
+	  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 			
+      http://www.springframework.org/schema/mvc				
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">				
+  		<!-- 注册Action控制器,让springIOC容器在启动的时候去找带@Controller的类,注意:导入的是类所在的包而并不是类 -->
+		<!-- 注意controller层只能在springMVC.xml中扫描才有效 -->
+		<mvc:annotation-driven></mvc:annotation-driven> <!-- 扫描开启,并且有静态资源的时候必须有这个才不会影响restful资源 -->
+		<context:component-scan base-package="com.hanhan.test1.controller"/>
+		<!-- json转换器 ,因为使用注解,所以不用转换器-->
+<!-- <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+ <property name="supportedMediaTypes" value="application/json" />
+</bean>	 -->	
+  		<!-- 映射器 跟以前不用注解的时候不一样了,可以省略-->		
+  		<!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>	 -->	
+  		<!-- 适配器 跟以前不用注解的时候不一样了,可省略-->		
+  		<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>	 -->	
+  		<!-- 视图解析器 跟以前不用注解的时候一样的,可省略-->		
+  		<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/> -->	
+  		<!-- 所有静态资源会被拦截,所以要想直接访问静态资源就要配置//所有swagger目录的访问，直接访问location指定的目录 -->
+  		<!-- 就是说,"调用"路径中出现/js_EasyUIAndJqueryAndJavaScript/**的话就代表实际走的路径/js_EasyUIAndJqueryAndJavaScript/
+  		这样,就通过mvc:resources这个标签把专门的静态资源跟动态资源区分开了 -->	
+	    <!--<mvc:resources location="/js_EasyUIAndJqueryAndJavaScript/" mapping="/js_EasyUIAndJqueryAndJavaScript/**">
+	    </mvc:resources>-->
+	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+	<!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>-->
+		<!-- 指定所上传文件的总大小不能超过200KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+	<!--	<property name="maxUploadSize" value="200000"/>
+	</bean>-->
+	<!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+	<!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的，而且此时还没有进入到Controller方法中 -->
+	<!--<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				&lt;!&ndash; 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 &ndash;&gt;
+				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error_fileupload</prop>
+			</props>
+		</property>
+	</bean>-->
+
+
+
+
+
+	<!-- 静态资源配置-->
+	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
+		<mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
+	<mvc:resources location="/other/" mapping="/other/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/" mapping="/WEB-INF/**"></mvc:resources>
+	<mvc:resources location="/TestJs/" mapping="/TestJs/**"></mvc:resources>
+	<!--	<mvc:resources location="/js/" mapping="/js/**"/>-->
+
+
+</beans>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--本 xml在web.xml中通过SpringMVC.xml已经被加载进来-->
+   <!-- <mvc:interceptors>
+        &lt;!&ndash;拦截器一&ndash;&gt;
+        <mvc:interceptor>
+        &lt;!&ndash;<mvc:mapping path="/**"/>&ndash;&gt;&lt;!&ndash;用这个的话就是匹配所有&ndash;&gt;
+        &lt;!&ndash;<mvc:mapping path="/ignore"/>&ndash;&gt;&lt;!&ndash;这句话会忽略所有的拦截器&ndash;&gt;
+        <mvc:mapping path="/t/test"/>&lt;!&ndash;这样会拦截到http://localhost:1080/t/test.action&ndash;&gt;
+            <bean class="com.aiBanShi.ErpToShop.component.TestInterceptor"></bean>
+        </mvc:interceptor>
+        &lt;!&ndash;拦截器二&ndash;&gt;
+        <mvc:interceptor>
+            &lt;!&ndash;<mvc:mapping path="/**"/>&ndash;&gt;&lt;!&ndash;用这个的话就是匹配所有&ndash;&gt;
+            &lt;!&ndash;<mvc:mapping path="/ignore"/>&ndash;&gt;&lt;!&ndash;这句话会忽略所有的拦截器&ndash;&gt;
+            <mvc:mapping path="/t/test1*"/>&lt;!&ndash;这样会拦截到http://localhost:1080/t/test1*,如果没有*,可能会拦截不到test1.action&ndash;&gt;
+            <bean class="com.aiBanShi.ErpToShop.component.TestLanJieQi"></bean>
+        </mvc:interceptor>
+        &lt;!&ndash;拦截器三&ndash;&gt;
+        <mvc:interceptor>&lt;!&ndash;该拦截器是排除性拦截器&ndash;&gt;
+             <mvc:mapping path="/**"/>&lt;!&ndash;该拦截器会拦截所有&ndash;&gt;
+            &lt;!&ndash; 本地测试的时候把下面的注释放开,注掉上面的行 &ndash;&gt;
+            &lt;!&ndash;<mvc:mapping path="/ignore"/>&ndash;&gt;
+            <mvc:exclude-mapping path="/t/test1*"/>&lt;!&ndash;该拦截器要排除的,带*是为了action的bug&ndash;&gt;
+            <mvc:exclude-mapping path="/t/test*"/>&lt;!&ndash;该拦截器要排除的&ndash;&gt;
+            <bean class="com.aiBanShi.ErpToShop.component.TestInterceptor003">
+                <property name="name1">
+                    <set>
+                        <value>hanhan</value>
+                        <value>mengru</value>
+                        <value>jiacheng</value>
+                    </set>
+                </property>
+                <property name="name2" value="han" />
+                <property name="name3" value="meng" />
+                <property name="name4" value="jia" />
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
+</beans>

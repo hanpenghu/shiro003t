@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanhan.test1.dao.mapperJava1.HishopProductsMapper" >
+  <resultMap id="BaseResultMap" type="com.hanhan.test1.dto.HishopProducts" >
+    <id column="ProductId" property="productid" jdbcType="INTEGER" />
+    <result column="CategoryId" property="categoryid" jdbcType="INTEGER" />
+    <result column="TypeId" property="typeid" jdbcType="INTEGER" />
+    <result column="ProductName" property="productname" jdbcType="VARCHAR" />
+    <result column="ProductCode" property="productcode" jdbcType="VARCHAR" />
+    <result column="ShortDescription" property="shortdescription" jdbcType="VARCHAR" />
+    <result column="Unit" property="unit" jdbcType="VARCHAR" />
+    <result column="Description" property="description" jdbcType="LONGVARCHAR" />
+    <result column="MobbileDescription" property="mobbiledescription" jdbcType="LONGVARCHAR" />
+    <result column="Title" property="title" jdbcType="VARCHAR" />
+    <result column="Meta_Description" property="metaDescription" jdbcType="VARCHAR" />
+    <result column="Meta_Keywords" property="metaKeywords" jdbcType="VARCHAR" />
+    <result column="SaleStatus" property="salestatus" jdbcType="INTEGER" />
+    <result column="AddedDate" property="addeddate" jdbcType="TIMESTAMP" />
+    <result column="UpdateDate" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="VistiCounts" property="visticounts" jdbcType="INTEGER" />
+    <result column="SaleCounts" property="salecounts" jdbcType="INTEGER" />
+    <result column="ShowSaleCounts" property="showsalecounts" jdbcType="INTEGER" />
+    <result column="DisplaySequence" property="displaysequence" jdbcType="INTEGER" />
+    <result column="ImageUrl1" property="imageurl1" jdbcType="VARCHAR" />
+    <result column="ImageUrl2" property="imageurl2" jdbcType="VARCHAR" />
+    <result column="ImageUrl3" property="imageurl3" jdbcType="VARCHAR" />
+    <result column="ImageUrl4" property="imageurl4" jdbcType="VARCHAR" />
+    <result column="ImageUrl5" property="imageurl5" jdbcType="VARCHAR" />
+    <result column="ThumbnailUrl40" property="thumbnailurl40" jdbcType="VARCHAR" />
+    <result column="ThumbnailUrl60" property="thumbnailurl60" jdbcType="VARCHAR" />
+    <result column="ThumbnailUrl100" property="thumbnailurl100" jdbcType="VARCHAR" />
+    <result column="ThumbnailUrl160" property="thumbnailurl160" jdbcType="VARCHAR" />
+    <result column="ThumbnailUrl180" property="thumbnailurl180" jdbcType="VARCHAR" />
+    <result column="ThumbnailUrl220" property="thumbnailurl220" jdbcType="VARCHAR" />
+    <result column="ThumbnailUrl310" property="thumbnailurl310" jdbcType="VARCHAR" />
+    <result column="ThumbnailUrl410" property="thumbnailurl410" jdbcType="VARCHAR" />
+    <result column="MarketPrice" property="marketprice" jdbcType="DECIMAL" />
+    <result column="BrandId" property="brandid" jdbcType="INTEGER" />
+    <result column="MainCategoryPath" property="maincategorypath" jdbcType="VARCHAR" />
+    <result column="ExtendCategoryPath" property="extendcategorypath" jdbcType="VARCHAR" />
+    <result column="ExtendCategoryPath1" property="extendcategorypath1" jdbcType="VARCHAR" />
+    <result column="ExtendCategoryPath2" property="extendcategorypath2" jdbcType="VARCHAR" />
+    <result column="ExtendCategoryPath3" property="extendcategorypath3" jdbcType="VARCHAR" />
+    <result column="ExtendCategoryPath4" property="extendcategorypath4" jdbcType="VARCHAR" />
+    <result column="HasSKU" property="hassku" jdbcType="BIT" />
+    <result column="IsfreeShipping" property="isfreeshipping" jdbcType="BIT" />
+    <result column="TaobaoProductId" property="taobaoproductid" jdbcType="BIGINT" />
+    <result column="ReferralDeduct" property="referraldeduct" jdbcType="DECIMAL" />
+    <result column="SubMemberDeduct" property="submemberdeduct" jdbcType="DECIMAL" />
+    <result column="SubReferralDeduct" property="subreferraldeduct" jdbcType="DECIMAL" />
+    <result column="ShippingTemplateId" property="shippingtemplateid" jdbcType="INTEGER" />
+    <result column="SecondLevelDeduct" property="secondleveldeduct" jdbcType="DECIMAL" />
+    <result column="ThreeLevelDeduct" property="threeleveldeduct" jdbcType="DECIMAL" />
+    <result column="SupplierId" property="supplierid" jdbcType="INTEGER" />
+    <result column="AuditStatus" property="auditstatus" jdbcType="TINYINT" />
+    <result column="AuditReson" property="auditreson" jdbcType="VARCHAR" />
+    <result column="Volume" property="volume" jdbcType="DECIMAL" />
+    <result column="TenantID" property="tenantid" jdbcType="INTEGER" />
+    <result column="guid" property="guid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ProductId, CategoryId, TypeId, ProductName, ProductCode, ShortDescription, Unit, 
+    Description, MobbileDescription, Title, Meta_Description, Meta_Keywords, SaleStatus, 
+    AddedDate, UpdateDate, VistiCounts, SaleCounts, ShowSaleCounts, DisplaySequence, 
+    ImageUrl1, ImageUrl2, ImageUrl3, ImageUrl4, ImageUrl5, ThumbnailUrl40, ThumbnailUrl60, 
+    ThumbnailUrl100, ThumbnailUrl160, ThumbnailUrl180, ThumbnailUrl220, ThumbnailUrl310, 
+    ThumbnailUrl410, MarketPrice, BrandId, MainCategoryPath, ExtendCategoryPath, ExtendCategoryPath1, 
+    ExtendCategoryPath2, ExtendCategoryPath3, ExtendCategoryPath4, HasSKU, IsfreeShipping, 
+    TaobaoProductId, ReferralDeduct, SubMemberDeduct, SubReferralDeduct, ShippingTemplateId, 
+    SecondLevelDeduct, ThreeLevelDeduct, SupplierId, AuditStatus, AuditReson, Volume, 
+    TenantID, guid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hanhan.test1.dto.HishopProductsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Hishop_Products
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Hishop_Products
+    where ProductId = #{productid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Hishop_Products
+    where ProductId = #{productid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hanhan.test1.dto.HishopProductsExample" >
+    delete from Hishop_Products
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hanhan.test1.dto.HishopProducts" >
+    insert into Hishop_Products (ProductId, CategoryId, TypeId, 
+      ProductName, ProductCode, ShortDescription, 
+      Unit, Description, MobbileDescription, 
+      Title, Meta_Description, Meta_Keywords, 
+      SaleStatus, AddedDate, UpdateDate, 
+      VistiCounts, SaleCounts, ShowSaleCounts, 
+      DisplaySequence, ImageUrl1, ImageUrl2, 
+      ImageUrl3, ImageUrl4, ImageUrl5, 
+      ThumbnailUrl40, ThumbnailUrl60, ThumbnailUrl100, 
+      ThumbnailUrl160, ThumbnailUrl180, ThumbnailUrl220, 
+      ThumbnailUrl310, ThumbnailUrl410, MarketPrice, 
+      BrandId, MainCategoryPath, ExtendCategoryPath, 
+      ExtendCategoryPath1, ExtendCategoryPath2, 
+      ExtendCategoryPath3, ExtendCategoryPath4, 
+      HasSKU, IsfreeShipping, TaobaoProductId, 
+      ReferralDeduct, SubMemberDeduct, SubReferralDeduct, 
+      ShippingTemplateId, SecondLevelDeduct, 
+      ThreeLevelDeduct, SupplierId, AuditStatus, 
+      AuditReson, Volume, TenantID, 
+      guid)
+    values (#{productid,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER}, 
+      #{productname,jdbcType=VARCHAR}, #{productcode,jdbcType=VARCHAR}, #{shortdescription,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}, #{mobbiledescription,jdbcType=LONGVARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{metaDescription,jdbcType=VARCHAR}, #{metaKeywords,jdbcType=VARCHAR}, 
+      #{salestatus,jdbcType=INTEGER}, #{addeddate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{visticounts,jdbcType=INTEGER}, #{salecounts,jdbcType=INTEGER}, #{showsalecounts,jdbcType=INTEGER}, 
+      #{displaysequence,jdbcType=INTEGER}, #{imageurl1,jdbcType=VARCHAR}, #{imageurl2,jdbcType=VARCHAR}, 
+      #{imageurl3,jdbcType=VARCHAR}, #{imageurl4,jdbcType=VARCHAR}, #{imageurl5,jdbcType=VARCHAR}, 
+      #{thumbnailurl40,jdbcType=VARCHAR}, #{thumbnailurl60,jdbcType=VARCHAR}, #{thumbnailurl100,jdbcType=VARCHAR}, 
+      #{thumbnailurl160,jdbcType=VARCHAR}, #{thumbnailurl180,jdbcType=VARCHAR}, #{thumbnailurl220,jdbcType=VARCHAR}, 
+      #{thumbnailurl310,jdbcType=VARCHAR}, #{thumbnailurl410,jdbcType=VARCHAR}, #{marketprice,jdbcType=DECIMAL}, 
+      #{brandid,jdbcType=INTEGER}, #{maincategorypath,jdbcType=VARCHAR}, #{extendcategorypath,jdbcType=VARCHAR}, 
+      #{extendcategorypath1,jdbcType=VARCHAR}, #{extendcategorypath2,jdbcType=VARCHAR}, 
+      #{extendcategorypath3,jdbcType=VARCHAR}, #{extendcategorypath4,jdbcType=VARCHAR}, 
+      #{hassku,jdbcType=BIT}, #{isfreeshipping,jdbcType=BIT}, #{taobaoproductid,jdbcType=BIGINT}, 
+      #{referraldeduct,jdbcType=DECIMAL}, #{submemberdeduct,jdbcType=DECIMAL}, #{subreferraldeduct,jdbcType=DECIMAL}, 
+      #{shippingtemplateid,jdbcType=INTEGER}, #{secondleveldeduct,jdbcType=DECIMAL}, 
+      #{threeleveldeduct,jdbcType=DECIMAL}, #{supplierid,jdbcType=INTEGER}, #{auditstatus,jdbcType=TINYINT}, 
+      #{auditreson,jdbcType=VARCHAR}, #{volume,jdbcType=DECIMAL}, #{tenantid,jdbcType=INTEGER}, 
+      #{guid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hanhan.test1.dto.HishopProducts" >
+    insert into Hishop_Products
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        ProductId,
+      </if>
+      <if test="categoryid != null" >
+        CategoryId,
+      </if>
+      <if test="typeid != null" >
+        TypeId,
+      </if>
+      <if test="productname != null" >
+        ProductName,
+      </if>
+      <if test="productcode != null" >
+        ProductCode,
+      </if>
+      <if test="shortdescription != null" >
+        ShortDescription,
+      </if>
+      <if test="unit != null" >
+        Unit,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+      <if test="mobbiledescription != null" >
+        MobbileDescription,
+      </if>
+      <if test="title != null" >
+        Title,
+      </if>
+      <if test="metaDescription != null" >
+        Meta_Description,
+      </if>
+      <if test="metaKeywords != null" >
+        Meta_Keywords,
+      </if>
+      <if test="salestatus != null" >
+        SaleStatus,
+      </if>
+      <if test="addeddate != null" >
+        AddedDate,
+      </if>
+      <if test="updatedate != null" >
+        UpdateDate,
+      </if>
+      <if test="visticounts != null" >
+        VistiCounts,
+      </if>
+      <if test="salecounts != null" >
+        SaleCounts,
+      </if>
+      <if test="showsalecounts != null" >
+        ShowSaleCounts,
+      </if>
+      <if test="displaysequence != null" >
+        DisplaySequence,
+      </if>
+      <if test="imageurl1 != null" >
+        ImageUrl1,
+      </if>
+      <if test="imageurl2 != null" >
+        ImageUrl2,
+      </if>
+      <if test="imageurl3 != null" >
+        ImageUrl3,
+      </if>
+      <if test="imageurl4 != null" >
+        ImageUrl4,
+      </if>
+      <if test="imageurl5 != null" >
+        ImageUrl5,
+      </if>
+      <if test="thumbnailurl40 != null" >
+        ThumbnailUrl40,
+      </if>
+      <if test="thumbnailurl60 != null" >
+        ThumbnailUrl60,
+      </if>
+      <if test="thumbnailurl100 != null" >
+        ThumbnailUrl100,
+      </if>
+      <if test="thumbnailurl160 != null" >
+        ThumbnailUrl160,
+      </if>
+      <if test="thumbnailurl180 != null" >
+        ThumbnailUrl180,
+      </if>
+      <if test="thumbnailurl220 != null" >
+        ThumbnailUrl220,
+      </if>
+      <if test="thumbnailurl310 != null" >
+        ThumbnailUrl310,
+      </if>
+      <if test="thumbnailurl410 != null" >
+        ThumbnailUrl410,
+      </if>
+      <if test="marketprice != null" >
+        MarketPrice,
+      </if>
+      <if test="brandid != null" >
+        BrandId,
+      </if>
+      <if test="maincategorypath != null" >
+        MainCategoryPath,
+      </if>
+      <if test="extendcategorypath != null" >
+        ExtendCategoryPath,
+      </if>
+      <if test="extendcategorypath1 != null" >
+        ExtendCategoryPath1,
+      </if>
+      <if test="extendcategorypath2 != null" >
+        ExtendCategoryPath2,
+      </if>
+      <if test="extendcategorypath3 != null" >
+        ExtendCategoryPath3,
+      </if>
+      <if test="extendcategorypath4 != null" >
+        ExtendCategoryPath4,
+      </if>
+      <if test="hassku != null" >
+        HasSKU,
+      </if>
+      <if test="isfreeshipping != null" >
+        IsfreeShipping,
+      </if>
+      <if test="taobaoproductid != null" >
+        TaobaoProductId,
+      </if>
+      <if test="referraldeduct != null" >
+        ReferralDeduct,
+      </if>
+      <if test="submemberdeduct != null" >
+        SubMemberDeduct,
+      </if>
+      <if test="subreferraldeduct != null" >
+        SubReferralDeduct,
+      </if>
+      <if test="shippingtemplateid != null" >
+        ShippingTemplateId,
+      </if>
+      <if test="secondleveldeduct != null" >
+        SecondLevelDeduct,
+      </if>
+      <if test="threeleveldeduct != null" >
+        ThreeLevelDeduct,
+      </if>
+      <if test="supplierid != null" >
+        SupplierId,
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus,
+      </if>
+      <if test="auditreson != null" >
+        AuditReson,
+      </if>
+      <if test="volume != null" >
+        Volume,
+      </if>
+      <if test="tenantid != null" >
+        TenantID,
+      </if>
+      <if test="guid != null" >
+        guid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null" >
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="productcode != null" >
+        #{productcode,jdbcType=VARCHAR},
+      </if>
+      <if test="shortdescription != null" >
+        #{shortdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mobbiledescription != null" >
+        #{mobbiledescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="metaDescription != null" >
+        #{metaDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="metaKeywords != null" >
+        #{metaKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="salestatus != null" >
+        #{salestatus,jdbcType=INTEGER},
+      </if>
+      <if test="addeddate != null" >
+        #{addeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visticounts != null" >
+        #{visticounts,jdbcType=INTEGER},
+      </if>
+      <if test="salecounts != null" >
+        #{salecounts,jdbcType=INTEGER},
+      </if>
+      <if test="showsalecounts != null" >
+        #{showsalecounts,jdbcType=INTEGER},
+      </if>
+      <if test="displaysequence != null" >
+        #{displaysequence,jdbcType=INTEGER},
+      </if>
+      <if test="imageurl1 != null" >
+        #{imageurl1,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl2 != null" >
+        #{imageurl2,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl3 != null" >
+        #{imageurl3,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl4 != null" >
+        #{imageurl4,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl5 != null" >
+        #{imageurl5,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl40 != null" >
+        #{thumbnailurl40,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl60 != null" >
+        #{thumbnailurl60,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl100 != null" >
+        #{thumbnailurl100,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl160 != null" >
+        #{thumbnailurl160,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl180 != null" >
+        #{thumbnailurl180,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl220 != null" >
+        #{thumbnailurl220,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl310 != null" >
+        #{thumbnailurl310,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl410 != null" >
+        #{thumbnailurl410,jdbcType=VARCHAR},
+      </if>
+      <if test="marketprice != null" >
+        #{marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="brandid != null" >
+        #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="maincategorypath != null" >
+        #{maincategorypath,jdbcType=VARCHAR},
+      </if>
+      <if test="extendcategorypath != null" >
+        #{extendcategorypath,jdbcType=VARCHAR},
+      </if>
+      <if test="extendcategorypath1 != null" >
+        #{extendcategorypath1,jdbcType=VARCHAR},
+      </if>
+      <if test="extendcategorypath2 != null" >
+        #{extendcategorypath2,jdbcType=VARCHAR},
+      </if>
+      <if test="extendcategorypath3 != null" >
+        #{extendcategorypath3,jdbcType=VARCHAR},
+      </if>
+      <if test="extendcategorypath4 != null" >
+        #{extendcategorypath4,jdbcType=VARCHAR},
+      </if>
+      <if test="hassku != null" >
+        #{hassku,jdbcType=BIT},
+      </if>
+      <if test="isfreeshipping != null" >
+        #{isfreeshipping,jdbcType=BIT},
+      </if>
+      <if test="taobaoproductid != null" >
+        #{taobaoproductid,jdbcType=BIGINT},
+      </if>
+      <if test="referraldeduct != null" >
+        #{referraldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="submemberdeduct != null" >
+        #{submemberdeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="subreferraldeduct != null" >
+        #{subreferraldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingtemplateid != null" >
+        #{shippingtemplateid,jdbcType=INTEGER},
+      </if>
+      <if test="secondleveldeduct != null" >
+        #{secondleveldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="threeleveldeduct != null" >
+        #{threeleveldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="auditstatus != null" >
+        #{auditstatus,jdbcType=TINYINT},
+      </if>
+      <if test="auditreson != null" >
+        #{auditreson,jdbcType=VARCHAR},
+      </if>
+      <if test="volume != null" >
+        #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="tenantid != null" >
+        #{tenantid,jdbcType=INTEGER},
+      </if>
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hanhan.test1.dto.HishopProductsExample" resultType="java.lang.Integer" >
+    select count(*) from Hishop_Products
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Hishop_Products
+    <set >
+      <if test="record.productid != null" >
+        ProductId = #{record.productid,jdbcType=INTEGER},
+      </if>
+      <if test="record.categoryid != null" >
+        CategoryId = #{record.categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeid != null" >
+        TypeId = #{record.typeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.productname != null" >
+        ProductName = #{record.productname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productcode != null" >
+        ProductCode = #{record.productcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortdescription != null" >
+        ShortDescription = #{record.shortdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null" >
+        Unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        Description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.mobbiledescription != null" >
+        MobbileDescription = #{record.mobbiledescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.title != null" >
+        Title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.metaDescription != null" >
+        Meta_Description = #{record.metaDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.metaKeywords != null" >
+        Meta_Keywords = #{record.metaKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salestatus != null" >
+        SaleStatus = #{record.salestatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.addeddate != null" >
+        AddedDate = #{record.addeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedate != null" >
+        UpdateDate = #{record.updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.visticounts != null" >
+        VistiCounts = #{record.visticounts,jdbcType=INTEGER},
+      </if>
+      <if test="record.salecounts != null" >
+        SaleCounts = #{record.salecounts,jdbcType=INTEGER},
+      </if>
+      <if test="record.showsalecounts != null" >
+        ShowSaleCounts = #{record.showsalecounts,jdbcType=INTEGER},
+      </if>
+      <if test="record.displaysequence != null" >
+        DisplaySequence = #{record.displaysequence,jdbcType=INTEGER},
+      </if>
+      <if test="record.imageurl1 != null" >
+        ImageUrl1 = #{record.imageurl1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageurl2 != null" >
+        ImageUrl2 = #{record.imageurl2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageurl3 != null" >
+        ImageUrl3 = #{record.imageurl3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageurl4 != null" >
+        ImageUrl4 = #{record.imageurl4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageurl5 != null" >
+        ImageUrl5 = #{record.imageurl5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbnailurl40 != null" >
+        ThumbnailUrl40 = #{record.thumbnailurl40,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbnailurl60 != null" >
+        ThumbnailUrl60 = #{record.thumbnailurl60,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbnailurl100 != null" >
+        ThumbnailUrl100 = #{record.thumbnailurl100,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbnailurl160 != null" >
+        ThumbnailUrl160 = #{record.thumbnailurl160,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbnailurl180 != null" >
+        ThumbnailUrl180 = #{record.thumbnailurl180,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbnailurl220 != null" >
+        ThumbnailUrl220 = #{record.thumbnailurl220,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbnailurl310 != null" >
+        ThumbnailUrl310 = #{record.thumbnailurl310,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbnailurl410 != null" >
+        ThumbnailUrl410 = #{record.thumbnailurl410,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketprice != null" >
+        MarketPrice = #{record.marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.brandid != null" >
+        BrandId = #{record.brandid,jdbcType=INTEGER},
+      </if>
+      <if test="record.maincategorypath != null" >
+        MainCategoryPath = #{record.maincategorypath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendcategorypath != null" >
+        ExtendCategoryPath = #{record.extendcategorypath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendcategorypath1 != null" >
+        ExtendCategoryPath1 = #{record.extendcategorypath1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendcategorypath2 != null" >
+        ExtendCategoryPath2 = #{record.extendcategorypath2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendcategorypath3 != null" >
+        ExtendCategoryPath3 = #{record.extendcategorypath3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendcategorypath4 != null" >
+        ExtendCategoryPath4 = #{record.extendcategorypath4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hassku != null" >
+        HasSKU = #{record.hassku,jdbcType=BIT},
+      </if>
+      <if test="record.isfreeshipping != null" >
+        IsfreeShipping = #{record.isfreeshipping,jdbcType=BIT},
+      </if>
+      <if test="record.taobaoproductid != null" >
+        TaobaoProductId = #{record.taobaoproductid,jdbcType=BIGINT},
+      </if>
+      <if test="record.referraldeduct != null" >
+        ReferralDeduct = #{record.referraldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="record.submemberdeduct != null" >
+        SubMemberDeduct = #{record.submemberdeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="record.subreferraldeduct != null" >
+        SubReferralDeduct = #{record.subreferraldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shippingtemplateid != null" >
+        ShippingTemplateId = #{record.shippingtemplateid,jdbcType=INTEGER},
+      </if>
+      <if test="record.secondleveldeduct != null" >
+        SecondLevelDeduct = #{record.secondleveldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="record.threeleveldeduct != null" >
+        ThreeLevelDeduct = #{record.threeleveldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supplierid != null" >
+        SupplierId = #{record.supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditstatus != null" >
+        AuditStatus = #{record.auditstatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.auditreson != null" >
+        AuditReson = #{record.auditreson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.volume != null" >
+        Volume = #{record.volume,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenantid != null" >
+        TenantID = #{record.tenantid,jdbcType=INTEGER},
+      </if>
+      <if test="record.guid != null" >
+        guid = #{record.guid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Hishop_Products
+    set ProductId = #{record.productid,jdbcType=INTEGER},
+      CategoryId = #{record.categoryid,jdbcType=INTEGER},
+      TypeId = #{record.typeid,jdbcType=INTEGER},
+      ProductName = #{record.productname,jdbcType=VARCHAR},
+      ProductCode = #{record.productcode,jdbcType=VARCHAR},
+      ShortDescription = #{record.shortdescription,jdbcType=VARCHAR},
+      Unit = #{record.unit,jdbcType=VARCHAR},
+      Description = #{record.description,jdbcType=LONGVARCHAR},
+      MobbileDescription = #{record.mobbiledescription,jdbcType=LONGVARCHAR},
+      Title = #{record.title,jdbcType=VARCHAR},
+      Meta_Description = #{record.metaDescription,jdbcType=VARCHAR},
+      Meta_Keywords = #{record.metaKeywords,jdbcType=VARCHAR},
+      SaleStatus = #{record.salestatus,jdbcType=INTEGER},
+      AddedDate = #{record.addeddate,jdbcType=TIMESTAMP},
+      UpdateDate = #{record.updatedate,jdbcType=TIMESTAMP},
+      VistiCounts = #{record.visticounts,jdbcType=INTEGER},
+      SaleCounts = #{record.salecounts,jdbcType=INTEGER},
+      ShowSaleCounts = #{record.showsalecounts,jdbcType=INTEGER},
+      DisplaySequence = #{record.displaysequence,jdbcType=INTEGER},
+      ImageUrl1 = #{record.imageurl1,jdbcType=VARCHAR},
+      ImageUrl2 = #{record.imageurl2,jdbcType=VARCHAR},
+      ImageUrl3 = #{record.imageurl3,jdbcType=VARCHAR},
+      ImageUrl4 = #{record.imageurl4,jdbcType=VARCHAR},
+      ImageUrl5 = #{record.imageurl5,jdbcType=VARCHAR},
+      ThumbnailUrl40 = #{record.thumbnailurl40,jdbcType=VARCHAR},
+      ThumbnailUrl60 = #{record.thumbnailurl60,jdbcType=VARCHAR},
+      ThumbnailUrl100 = #{record.thumbnailurl100,jdbcType=VARCHAR},
+      ThumbnailUrl160 = #{record.thumbnailurl160,jdbcType=VARCHAR},
+      ThumbnailUrl180 = #{record.thumbnailurl180,jdbcType=VARCHAR},
+      ThumbnailUrl220 = #{record.thumbnailurl220,jdbcType=VARCHAR},
+      ThumbnailUrl310 = #{record.thumbnailurl310,jdbcType=VARCHAR},
+      ThumbnailUrl410 = #{record.thumbnailurl410,jdbcType=VARCHAR},
+      MarketPrice = #{record.marketprice,jdbcType=DECIMAL},
+      BrandId = #{record.brandid,jdbcType=INTEGER},
+      MainCategoryPath = #{record.maincategorypath,jdbcType=VARCHAR},
+      ExtendCategoryPath = #{record.extendcategorypath,jdbcType=VARCHAR},
+      ExtendCategoryPath1 = #{record.extendcategorypath1,jdbcType=VARCHAR},
+      ExtendCategoryPath2 = #{record.extendcategorypath2,jdbcType=VARCHAR},
+      ExtendCategoryPath3 = #{record.extendcategorypath3,jdbcType=VARCHAR},
+      ExtendCategoryPath4 = #{record.extendcategorypath4,jdbcType=VARCHAR},
+      HasSKU = #{record.hassku,jdbcType=BIT},
+      IsfreeShipping = #{record.isfreeshipping,jdbcType=BIT},
+      TaobaoProductId = #{record.taobaoproductid,jdbcType=BIGINT},
+      ReferralDeduct = #{record.referraldeduct,jdbcType=DECIMAL},
+      SubMemberDeduct = #{record.submemberdeduct,jdbcType=DECIMAL},
+      SubReferralDeduct = #{record.subreferraldeduct,jdbcType=DECIMAL},
+      ShippingTemplateId = #{record.shippingtemplateid,jdbcType=INTEGER},
+      SecondLevelDeduct = #{record.secondleveldeduct,jdbcType=DECIMAL},
+      ThreeLevelDeduct = #{record.threeleveldeduct,jdbcType=DECIMAL},
+      SupplierId = #{record.supplierid,jdbcType=INTEGER},
+      AuditStatus = #{record.auditstatus,jdbcType=TINYINT},
+      AuditReson = #{record.auditreson,jdbcType=VARCHAR},
+      Volume = #{record.volume,jdbcType=DECIMAL},
+      TenantID = #{record.tenantid,jdbcType=INTEGER},
+      guid = #{record.guid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanhan.test1.dto.HishopProducts" >
+    update Hishop_Products
+    <set >
+      <if test="categoryid != null" >
+        CategoryId = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        TypeId = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        ProductName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="productcode != null" >
+        ProductCode = #{productcode,jdbcType=VARCHAR},
+      </if>
+      <if test="shortdescription != null" >
+        ShortDescription = #{shortdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        Unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mobbiledescription != null" >
+        MobbileDescription = #{mobbiledescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="title != null" >
+        Title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="metaDescription != null" >
+        Meta_Description = #{metaDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="metaKeywords != null" >
+        Meta_Keywords = #{metaKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="salestatus != null" >
+        SaleStatus = #{salestatus,jdbcType=INTEGER},
+      </if>
+      <if test="addeddate != null" >
+        AddedDate = #{addeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        UpdateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visticounts != null" >
+        VistiCounts = #{visticounts,jdbcType=INTEGER},
+      </if>
+      <if test="salecounts != null" >
+        SaleCounts = #{salecounts,jdbcType=INTEGER},
+      </if>
+      <if test="showsalecounts != null" >
+        ShowSaleCounts = #{showsalecounts,jdbcType=INTEGER},
+      </if>
+      <if test="displaysequence != null" >
+        DisplaySequence = #{displaysequence,jdbcType=INTEGER},
+      </if>
+      <if test="imageurl1 != null" >
+        ImageUrl1 = #{imageurl1,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl2 != null" >
+        ImageUrl2 = #{imageurl2,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl3 != null" >
+        ImageUrl3 = #{imageurl3,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl4 != null" >
+        ImageUrl4 = #{imageurl4,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl5 != null" >
+        ImageUrl5 = #{imageurl5,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl40 != null" >
+        ThumbnailUrl40 = #{thumbnailurl40,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl60 != null" >
+        ThumbnailUrl60 = #{thumbnailurl60,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl100 != null" >
+        ThumbnailUrl100 = #{thumbnailurl100,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl160 != null" >
+        ThumbnailUrl160 = #{thumbnailurl160,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl180 != null" >
+        ThumbnailUrl180 = #{thumbnailurl180,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl220 != null" >
+        ThumbnailUrl220 = #{thumbnailurl220,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl310 != null" >
+        ThumbnailUrl310 = #{thumbnailurl310,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailurl410 != null" >
+        ThumbnailUrl410 = #{thumbnailurl410,jdbcType=VARCHAR},
+      </if>
+      <if test="marketprice != null" >
+        MarketPrice = #{marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="brandid != null" >
+        BrandId = #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="maincategorypath != null" >
+        MainCategoryPath = #{maincategorypath,jdbcType=VARCHAR},
+      </if>
+      <if test="extendcategorypath != null" >
+        ExtendCategoryPath = #{extendcategorypath,jdbcType=VARCHAR},
+      </if>
+      <if test="extendcategorypath1 != null" >
+        ExtendCategoryPath1 = #{extendcategorypath1,jdbcType=VARCHAR},
+      </if>
+      <if test="extendcategorypath2 != null" >
+        ExtendCategoryPath2 = #{extendcategorypath2,jdbcType=VARCHAR},
+      </if>
+      <if test="extendcategorypath3 != null" >
+        ExtendCategoryPath3 = #{extendcategorypath3,jdbcType=VARCHAR},
+      </if>
+      <if test="extendcategorypath4 != null" >
+        ExtendCategoryPath4 = #{extendcategorypath4,jdbcType=VARCHAR},
+      </if>
+      <if test="hassku != null" >
+        HasSKU = #{hassku,jdbcType=BIT},
+      </if>
+      <if test="isfreeshipping != null" >
+        IsfreeShipping = #{isfreeshipping,jdbcType=BIT},
+      </if>
+      <if test="taobaoproductid != null" >
+        TaobaoProductId = #{taobaoproductid,jdbcType=BIGINT},
+      </if>
+      <if test="referraldeduct != null" >
+        ReferralDeduct = #{referraldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="submemberdeduct != null" >
+        SubMemberDeduct = #{submemberdeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="subreferraldeduct != null" >
+        SubReferralDeduct = #{subreferraldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingtemplateid != null" >
+        ShippingTemplateId = #{shippingtemplateid,jdbcType=INTEGER},
+      </if>
+      <if test="secondleveldeduct != null" >
+        SecondLevelDeduct = #{secondleveldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="threeleveldeduct != null" >
+        ThreeLevelDeduct = #{threeleveldeduct,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierid != null" >
+        SupplierId = #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus = #{auditstatus,jdbcType=TINYINT},
+      </if>
+      <if test="auditreson != null" >
+        AuditReson = #{auditreson,jdbcType=VARCHAR},
+      </if>
+      <if test="volume != null" >
+        Volume = #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="tenantid != null" >
+        TenantID = #{tenantid,jdbcType=INTEGER},
+      </if>
+      <if test="guid != null" >
+        guid = #{guid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ProductId = #{productid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hanhan.test1.dto.HishopProducts" >
+    update Hishop_Products
+    set CategoryId = #{categoryid,jdbcType=INTEGER},
+      TypeId = #{typeid,jdbcType=INTEGER},
+      ProductName = #{productname,jdbcType=VARCHAR},
+      ProductCode = #{productcode,jdbcType=VARCHAR},
+      ShortDescription = #{shortdescription,jdbcType=VARCHAR},
+      Unit = #{unit,jdbcType=VARCHAR},
+      Description = #{description,jdbcType=LONGVARCHAR},
+      MobbileDescription = #{mobbiledescription,jdbcType=LONGVARCHAR},
+      Title = #{title,jdbcType=VARCHAR},
+      Meta_Description = #{metaDescription,jdbcType=VARCHAR},
+      Meta_Keywords = #{metaKeywords,jdbcType=VARCHAR},
+      SaleStatus = #{salestatus,jdbcType=INTEGER},
+      AddedDate = #{addeddate,jdbcType=TIMESTAMP},
+      UpdateDate = #{updatedate,jdbcType=TIMESTAMP},
+      VistiCounts = #{visticounts,jdbcType=INTEGER},
+      SaleCounts = #{salecounts,jdbcType=INTEGER},
+      ShowSaleCounts = #{showsalecounts,jdbcType=INTEGER},
+      DisplaySequence = #{displaysequence,jdbcType=INTEGER},
+      ImageUrl1 = #{imageurl1,jdbcType=VARCHAR},
+      ImageUrl2 = #{imageurl2,jdbcType=VARCHAR},
+      ImageUrl3 = #{imageurl3,jdbcType=VARCHAR},
+      ImageUrl4 = #{imageurl4,jdbcType=VARCHAR},
+      ImageUrl5 = #{imageurl5,jdbcType=VARCHAR},
+      ThumbnailUrl40 = #{thumbnailurl40,jdbcType=VARCHAR},
+      ThumbnailUrl60 = #{thumbnailurl60,jdbcType=VARCHAR},
+      ThumbnailUrl100 = #{thumbnailurl100,jdbcType=VARCHAR},
+      ThumbnailUrl160 = #{thumbnailurl160,jdbcType=VARCHAR},
+      ThumbnailUrl180 = #{thumbnailurl180,jdbcType=VARCHAR},
+      ThumbnailUrl220 = #{thumbnailurl220,jdbcType=VARCHAR},
+      ThumbnailUrl310 = #{thumbnailurl310,jdbcType=VARCHAR},
+      ThumbnailUrl410 = #{thumbnailurl410,jdbcType=VARCHAR},
+      MarketPrice = #{marketprice,jdbcType=DECIMAL},
+      BrandId = #{brandid,jdbcType=INTEGER},
+      MainCategoryPath = #{maincategorypath,jdbcType=VARCHAR},
+      ExtendCategoryPath = #{extendcategorypath,jdbcType=VARCHAR},
+      ExtendCategoryPath1 = #{extendcategorypath1,jdbcType=VARCHAR},
+      ExtendCategoryPath2 = #{extendcategorypath2,jdbcType=VARCHAR},
+      ExtendCategoryPath3 = #{extendcategorypath3,jdbcType=VARCHAR},
+      ExtendCategoryPath4 = #{extendcategorypath4,jdbcType=VARCHAR},
+      HasSKU = #{hassku,jdbcType=BIT},
+      IsfreeShipping = #{isfreeshipping,jdbcType=BIT},
+      TaobaoProductId = #{taobaoproductid,jdbcType=BIGINT},
+      ReferralDeduct = #{referraldeduct,jdbcType=DECIMAL},
+      SubMemberDeduct = #{submemberdeduct,jdbcType=DECIMAL},
+      SubReferralDeduct = #{subreferraldeduct,jdbcType=DECIMAL},
+      ShippingTemplateId = #{shippingtemplateid,jdbcType=INTEGER},
+      SecondLevelDeduct = #{secondleveldeduct,jdbcType=DECIMAL},
+      ThreeLevelDeduct = #{threeleveldeduct,jdbcType=DECIMAL},
+      SupplierId = #{supplierid,jdbcType=INTEGER},
+      AuditStatus = #{auditstatus,jdbcType=TINYINT},
+      AuditReson = #{auditreson,jdbcType=VARCHAR},
+      Volume = #{volume,jdbcType=DECIMAL},
+      TenantID = #{tenantid,jdbcType=INTEGER},
+      guid = #{guid,jdbcType=VARCHAR}
+    where ProductId = #{productid,jdbcType=INTEGER}
+  </update>
+</mapper>

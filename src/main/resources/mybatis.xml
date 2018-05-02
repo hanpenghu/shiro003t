@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC  
+    "-//mybatis.org//DTD Config 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--notice:here cannot use classpath,when spring hava a config ,here can not config like this-->
+	 
+	<!-- <mappers>
+		<mapper resource="com/you_fuli/spiderFilm/dao/mapperXml/HishopSkusMapper.xml"/>
+	</mappers> -->
+	
+</configuration>  

@@ -1,0 +1,3 @@
+该项目的使用一定要注意的是：如果是sqlServer数据库 
+逆向生成代码后： 一定要把数据库映像里面的NVARCHAR改为VARCHAR
+要不然SqlServer会一直不通过

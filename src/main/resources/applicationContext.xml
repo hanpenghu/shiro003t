@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd 
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd 
+	http://www.springframework.org/schema/jdbc 
+	http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd 
+	http://www.springframework.org/schema/cache 
+	http://www.springframework.org/schema/cache/spring-cache-3.1.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	 http://www.springframework.org/schema/util 
+	 http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/task 
+	 http://www.springframework.org/schema/task/spring-task-3.0.xsd"
+	default-lazy-init="false"><!-- 不使用懒加载 -->
+
+
+<context:annotation-config/> 
+<task:executor id="executor" pool-size="10"/>  
+<task:scheduler id="scheduler" pool-size="10"/>  
+<task:annotation-driven executor="executor" scheduler="scheduler" />
+<context:component-scan base-package="com.hanhan.test1">
+ 	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/><!--排除controller的扫描-->
+</context:component-scan><!-- 使用注解扫描 -->
+<!--开启这个配置，spring才能识别@Scheduled注解  以便使用注解进行定时任务-->  
+  
+<!--================================================================================================================-->  
+	<!-- config of c3p0  -->
+	<!--config properties file of c3p0 -->
+    <context:property-placeholder location="classpath:dataSource.properties" />
+    <!-- config c3p0 dataSource -->
+    <!--注意双数据源的配置主要是SQLSessionFactory的配置-->
+    <!--以下是第一个数据源的配置情况-->
+    <bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- base information-->
+        <property name="jdbcUrl" value="${c3p0.url}"></property>
+        <property name="driverClass" value="${c3p0.driverClassName}"></property>
+        <property name="user" value="${c3p0.username}"></property>
+        <property name="password" value="${c3p0.password}"></property>
+        <!-- other config-->
+        <!--acquire 3 connect when　it　Init，value must be between minPoolSize and maxPoolSize!Default: 3 -->
+        <property name="initialPoolSize" value="3"></property>
+        <!--the min connect in the dataSource。Default: 3 -->
+        <property name="minPoolSize" value="3"></property>
+        <!--the max connect in the dataSource。Default: 15 -->
+        <property name="maxPoolSize" value="5"></property>
+        <!--when datasource have nothing ,while it will get the specified count connect once。Default: 3 -->
+        <property name="acquireIncrement" value="3"></property>
+        <!-- control the datasource load the PreparedStatements's count。if maxStatements and maxStatementsPerConnection value is 0，the cache will be closed。Default: 0 -->
+        <property name="maxStatements" value="8"></property>
+        <!-- maxStatementsPerConnection defined  the dataSource's single connects's max statements count in the cache。Default: 0 -->
+        <property name="maxStatementsPerConnection" value="5"></property>
+        <!--max idle time,if never used in 1800 seconds,all the connect will be break。if the value is zero ,it will never be abandoned。Default: 0 -->
+        <property name="maxIdleTime" value="1800"></property>
+    </bean>
+    
+    
+<!--================================================================================================================-->
+	<!-- mybatis file config,scan all mapper file -->
+	<bean id="sqlSessionFactory1" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource1" />
+		<!--notice-->
+		<!-- <property name="configLocation" value="classpath:mybatis.xml"></property> -->
+		 <property name="mapperLocations" value="classpath:xmlMapper1/*.xml"/>
+	</bean>
+    <!-- 配置SqlSessionTemplate -->
+    <bean id="sqlSessionTemplate1" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory1" />
+    </bean>
+<!--================================================================================================================-->
+
+	<!-- 扫描接口分业务用！ -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+  		<property name="basePackage" value="com.hanhan.test1.dao.mapperJava1" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory1"/>
+	</bean>
+<!-- ==============================================-->
+<!--================================================================================================================-->
+<!--================================================================================================================-->
+    <!--start a transaction to　the method-->
+    <bean id="transactionManager1" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource1"></property>
+    </bean>
+	<!-- use annotation way to start a transaction ,we must choose the way between the xml config  and the annotation config -->  
+    <!-- 开启注解方式的事务管理-->
+    <tx:annotation-driven transaction-manager="transactionManager1"/>
+<!--================================================================================================================-->
+    <!-- 以下是第二个数据源的配置情况 -->
+    <!-- config c3p0 dataSource -->
+   <!-- <bean id="dataSource2" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        &lt;!&ndash; base information&ndash;&gt;
+        <property name="jdbcUrl" value="${url}"></property>
+        <property name="driverClass" value="${driver}"></property>
+        <property name="user" value="${user}"></property>
+        <property name="password" value="${pwd}"></property>
+        &lt;!&ndash; other config&ndash;&gt;
+        &lt;!&ndash;acquire 3 connect when　it　Init，value must be between minPoolSize and maxPoolSize!Default: 3 &ndash;&gt;
+        <property name="initialPoolSize" value="3"></property>
+        &lt;!&ndash;the min connect in the dataSource。Default: 3 &ndash;&gt;
+        <property name="minPoolSize" value="3"></property>
+        &lt;!&ndash;the max connect in the dataSource。Default: 15 &ndash;&gt;
+        <property name="maxPoolSize" value="5"></property>
+        &lt;!&ndash;when datasource have nothing ,while it will get the specified count connect once。Default: 3 &ndash;&gt;
+        <property name="acquireIncrement" value="3"></property>
+        &lt;!&ndash; control the datasource load the PreparedStatements's count。if maxStatements and maxStatementsPerConnection value is 0，the cache will be closed。Default: 0 &ndash;&gt;
+        <property name="maxStatements" value="8"></property>
+        &lt;!&ndash; maxStatementsPerConnection defined  the dataSource's single connects's max statements count in the cache。Default: 0 &ndash;&gt;
+        <property name="maxStatementsPerConnection" value="5"></property>
+        &lt;!&ndash;max idle time,if never used in 1800 seconds,all the connect will be break。if the value is zero ,it will never be abandoned。Default: 0 &ndash;&gt;
+        <property name="maxIdleTime" value="1800"></property>
+    </bean>
+-->
+
+    <!--================================================================================================================-->
+    <!-- mybatis file config,scan all mapper file -->
+   <!-- <bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource2" />
+        &lt;!&ndash;notice&ndash;&gt;
+        &lt;!&ndash; <property name="configLocation" value="classpath:mybatis.xml"></property> &ndash;&gt;
+        <property name="mapperLocations" value="classpath:com/aiBanShi/ErpToShop/dao/mapperXml2/*.xml"/>
+    </bean>-->
+    <!-- 配置SqlSessionTemplate -->
+  <!--  <bean id="sqlSessionTemplate2" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory2" />
+    </bean>-->
+    <!--================================================================================================================-->
+
+    <!-- 扫描接口分业务用！ -->
+  <!--  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.aiBanShi.ErpToShop.dao.mapperJava2" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory2"/>
+    </bean>-->
+    <!-- ==============================================-->
+    <!--================================================================================================================-->
+    <!--================================================================================================================-->
+    <!--start a transaction to　the method-->
+   <!-- <bean id="transactionManager2" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource2"></property>
+    </bean>-->
+    <!-- use annotation way to start a transaction ,we must choose the way between the xml config  and the annotation config -->
+  <!--  <tx:annotation-driven transaction-manager="transactionManager2"/>-->
+
+
+
+
+
+
+
+    <!--=======================================================================================================-->
+    </beans>
+    <!--================================================================================================================-->
