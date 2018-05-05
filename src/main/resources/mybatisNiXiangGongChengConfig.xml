@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 ,荷合每美-->
+        <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            connectionURL="jdbc:sqlserver://58.211.48.54:9002;DatabaseName=DB_HHMM" userId="sa"
+            password="Zhangtao0804527">
+        </jdbcConnection>-->
+        <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=lianxi001" userId="sa"
+                        password="root">
+        </jdbcConnection>-->
+        <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://120.26.73.200:7201;DatabaseName=DB_BARC" userId="sa"
+                        password="x3g5k8h!9+guanglan@">
+        </jdbcConnection>-->
+       <!-- <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://116.62.224.172:7502;DatabaseName=DB_BARC" userId="sa"
+                        password="x2g5u7h!8+gaohang@">
+        </jdbcConnection>-->
+
+
+        <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://118.31.67.127:7201;DatabaseName=DB_BARC" userId="sa"
+                        password="f3h2y7e!2+changning#">
+        </jdbcConnection>-->
+        <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://114.55.143.240:1488;DatabaseName=DB_ZMT" userId="sa"
+                        password="ZMT@@123">
+        </jdbcConnection>-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/shiro_test?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+        <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg" 
+            userId="yycg"
+            password="yycg">
+        </jdbcConnection> -->
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL和NUMERIC类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true" />
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置，重要！！ -->
+        <javaModelGenerator targetPackage="com.hanhan.test1.dto"
+            targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        
+        
+        
+        <!-- targetProject:mapper映射文件生成的位置，重要！！ -->
+        <sqlMapGenerator targetPackage="xmlMapper1"
+            targetProject=".\src\main\resources">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        
+        
+        <!-- targetPackage：mapper接口生成的位置，重要！！ -->
+        <javaClientGenerator type="XMLMAPPER"
+            targetPackage="com.hanhan.test1.dao.mapperJava1"
+            targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+        
+        
+        <!-- 指定数据库表，要生成哪些表，就写哪些表，要和数据库中对应，不能写错！ -->
+        <!-- enableSelectByExample="false"不写默认是true,会生成PO类对应的Example类 -->
+       <!--  <table tableName="shang_pin_fen_lei"
+        	enableSelectByExample="false"
+        ></table> -->
+        <!--dept cust salm my_wh-->
+       <!-- <table tableName="sys_permission"></table>
+      	 <table tableName="sys_role"></table>
+        <table tableName="sys_role_permission"></table>
+        <table tableName="sys_user"></table>
+        <table tableName="sys_user_role"></table>-->
+       <!-- <table tableName="lockDocu"></table>-->
+
+    </context>
+</generatorConfiguration>
