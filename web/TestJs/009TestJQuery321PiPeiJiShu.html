@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+     .xxx{
+         background-color: aquamarine;
+     }
+    </style>
+</head>
+<body>
+<table>
+    <tr><td>Header 1</td></tr>
+    <tr><td>Value 1</td></tr>
+    <tr><td>Value 2</td></tr>
+</table>
+<script type="text/javascript">
+    $("tr:odd").addClass("xxx")//odd的意思是从0开始,匹配奇数
+</script>
+</body>
+</html>

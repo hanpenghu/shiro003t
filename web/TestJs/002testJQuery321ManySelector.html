@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div>div</div>
+    <p class="myClass">p class="myClass"</p>
+    <span>span</span>
+    <p class="notMyClass">p class="notMyClass"</p>
+    <script>
+        //text("")中的内容会替代原来的标签内的内容
+        $("div,span,p.myClass").text("大家好才是真的好！！！")
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div>你好</div>
+<input name="apple"/>
+<input name="flower" checked="checked" />
+    <script type="text/javascript">
+        //排除选择器,排除带属性checked的
+        $("input:not(input:checked)").val("筛选剩下001")
+        $("*:not(input)").text("不选择input")
+    </script>
+</body>
+</html>

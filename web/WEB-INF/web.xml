@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+    <welcome-file-list>
+        <welcome-file>static/index.html</welcome-file>
+    </welcome-file-list>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+    <!-- springMVC配置    -->
+    <servlet>
+        <servlet-name>mvc000</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:mvc*.xml</param-value><!--只要是在src同源目录下面都能扫描到-->
+        </init-param>
+        <load-on-startup>2</load-on-startup><!-- 配置为1的意思是在webxml启动的时候就加载MVC -->
+        <!-- <async-supported>true</async-supported> -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mvc000</servlet-name>
+        <!--<url-pattern>*.action</url-pattern>--><!-- 拦截以action结束作为SpringMVC起作用的区域 ,不能用于swagger测试,会读不出来-->
+        <!--<url-pattern>/*</url-pattern>--><!-- 拦截所有(静态动态都拦截,但是可以在mvc001放行),不带.action和带.action都拦截 ，可以用于swagger测试-->
+        <url-pattern>/</url-pattern><!-- 这个可以用于swagger测试 ,只拦截静态资源,可以在mvc001中放行-->
+    </servlet-mapping>
+    <!-- spring提供的POST编码从jsp到控制层转换成UTF-8的方法 -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 发布webService ,用xFire-->
+    <!-- <servlet>
+        <servlet-name>XFireServlet</servlet-name>
+        <servlet-class>org.codehaus.xfire.transport.http.XFireConfigurableServlet</servlet-class>
+        配置services.xml路径以便加载services.xml管理web服务，不配置则到默认路径加载
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>services.xml</param-value>
+        </init-param>
+    </servlet>
+      http://localhost:8081/zhongLiangInterfaceAll/services/ZL?wsdl
+    <servlet-mapping>
+        <servlet-name>XFireServlet</servlet-name>
+        <url-pattern>/services/*</url-pattern>
+    </servlet-mapping> -->
+</web-app>
