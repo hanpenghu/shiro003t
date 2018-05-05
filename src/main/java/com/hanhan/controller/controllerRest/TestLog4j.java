@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class TestLog4j {
 
+private  org.apache.log4j.Logger l = org.apache.log4j.LogManager.getLogger(this.getClass().getName());
 
-
-    //http://localhost:8080/testLog.action
+    //http://localhost:8080/testLog.action//这里带action是因为web.xml中mvc的拦截方式
     /**
      *返回
              {
@@ -21,7 +21,8 @@ public class TestLog4j {
     @RequestMapping(value="/testLog",method=RequestMethod.GET,produces = {p.producesJson})
     public @ResponseBody  Test f(){
 
-
+        l.info("--------我日------------");
+            l.error("----我曹----------");
 
 
             return new Test();
