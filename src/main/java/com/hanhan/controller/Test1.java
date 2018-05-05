@@ -1,4 +1,4 @@
-package com.hanhan.test1.controller;
+package com.hanhan.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

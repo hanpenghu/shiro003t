@@ -14,7 +14,7 @@
   		<!-- 注册Action控制器,让springIOC容器在启动的时候去找带@Controller的类,注意:导入的是类所在的包而并不是类 -->
 		<!-- 注意controller层只能在springMVC.xml中扫描才有效 -->
 		<mvc:annotation-driven></mvc:annotation-driven> <!-- 扫描开启,并且有静态资源的时候必须有这个才不会影响restful资源 -->
-		<context:component-scan base-package="com.hanhan.test1.controller"/>
+		<context:component-scan base-package="com.hanhan.controller"/>
 		<!-- json转换器 ,因为使用注解,所以不用转换器-->
 <!-- <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
  <property name="supportedMediaTypes" value="application/json" />
