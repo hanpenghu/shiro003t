@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
+@RequestMapping("f")
 public class TestLog4j {
 
 private  org.apache.log4j.Logger l = org.apache.log4j.LogManager.getLogger(this.getClass().getName());
@@ -18,6 +19,8 @@ private  org.apache.log4j.Logger l = org.apache.log4j.LogManager.getLogger(this.
 
      说明   json  接口也是由springMVC  扫描加载的
      * */
+    //http://localhost:8080/f/testLog.action  后来改成这个脱离shiro
+    //springmvc拦截带action后缀的
     @RequestMapping(value="/testLog",method=RequestMethod.GET,produces = {p.producesJson})
     public @ResponseBody  Test f(){
 
