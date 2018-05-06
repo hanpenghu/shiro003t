@@ -1,13 +1,24 @@
 package com.hanhan.controller;
 
 import com.hanhan.exception.CustomException;
+import com.hanhan.test1.hanhan.p;
+import com.hanhan.test1.shiro.CustomRealm;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * 
@@ -60,8 +71,40 @@ public class LoginController {
 	
 	//登陆提交地址，和applicationContext-shiro.xml中配置的loginurl一致
 	@RequestMapping("login")
-	public String login(HttpServletRequest request)throws Exception{
-		
+	public String login(HttpServletRequest request, HttpServletResponse response)throws Exception{
+
+		String username = request.getParameter("username");
+		String password=request.getParameter("password");
+		p.p("-------------------------login.action是否能够得到用户名和密码------------------------------");
+		p.p(username);
+		p.p(password);
+		p.p("-------------------------------------------------------");
+
+
+		String type = request.getParameter("type");
+		if(null!=type){
+			if("mobile".equals(type)){
+				p.p("-------------------------------------------------------");
+				p.p("我是来自手机端的请求");
+				p.p("-------------------------------------------------------");
+				//跳转到另外一个地方
+				request.getRequestDispatcher("/mobile.action").forward(request,response);
+			}
+		}
+
+		//实现前后分离
+//		// 在自己登录的rest里面写，比如UserRest里面的login方法中，user为传递过来的参数
+//		Subject currentUser = SecurityUtils.getSubject();
+//		UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassword());
+//// 开始进入shiro的认证流程
+//		currentUser.login(token);
+
+
+
+
+
+
+
 		//如果登陆失败从request中获取认证异常信息，shiroLoginFailure就是shiro异常类的全限定名
 		String exceptionClassName = (String) request.getAttribute("shiroLoginFailure");
 		//根据shiro返回的异常类路径判断，抛出指定异常信息
@@ -82,7 +125,73 @@ public class LoginController {
 		//登陆失败还到login页面
 		return "/WEB-INF/jsp/login.jsp";
 	}
-	
+
+
+
+	@Autowired
+	private org.apache.shiro.web.mgt.DefaultWebSecurityManager securityManager;
+
+	@Autowired
+	private CustomRealm customRealm;
+
+	//处理手机端
+	@RequestMapping("/mobile")
+	public void mobile(HttpServletResponse response,HttpServletRequest request){
+		p.p("-------------------------------------------------------");
+		p.p("您已经来到手机端控制层");
+		p.p("-------------------------------------------------------");
+		String username=request.getParameter("username");
+		String password = request.getParameter("password");
+		//将username和password做成token传给我们的
+		SecurityUtils.setSecurityManager(securityManager);
+		Subject subject = SecurityUtils.getSubject();
+		// 创建token令牌
+		UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+		try {
+			subject.login(token);
+			//这一步之后直接走了realm的认证方法
+		} catch (Exception e) {
+			e.printStackTrace();
+			p.p("-------------------------------------------------------");
+			p.p("没有认证通过");
+			p.p("-------------------------------------------------------");
+		}
+
+		//认证通过,开始授权//直接调用realm授权
+
+		AuthorizationInfo authorizationInfo = customRealm.doGetAuthorizationInfo(subject.getPrincipals());
+
+		List<String> permissions= (List<String>) authorizationInfo.getStringPermissions();
+
+		p.p("-------------------------------------------------------");
+		p.p("该移动端的所有权限是: ");
+		p.p(permissions);
+		p.p("-------------------------------------------------------");
+
+		//得到shiro的session
+		Session session = subject.getSession();
+		//把验证和授权放入shiro
+
+		String token1 = p.uuid();
+		session.setAttribute("token1",token1);
+		session.setAttribute("quanXian",permissions);
+
+		//接下来的代码逻辑是: 所有的移动端路径在shiro开个口子,匿名,然后手动用token认证和取出权限,这个可以配置
+		//在xml,做成拦截器,也可以直接做成代码工具进行验证
+		//也可以单独抽出来一层代码,如果是验证不通过,直接return msg
+
+
+	}
+
+
+
+
+
+
+
+
+
+
 /*	//用户退出
 	@RequestMapping("/logout")
 	public String logout(HttpSession session)throws Exception{

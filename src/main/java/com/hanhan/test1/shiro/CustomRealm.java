@@ -61,9 +61,11 @@ public class CustomRealm extends AuthorizingRealm {
 	
 	//realm的认证方法，从数据库查询用户信息
 	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(
+	public  AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
-		
+		p.p("-------------------认证开始------------------------------------");
+		p.p("doGetAuthenticationInfo");
+		p.p("-------------------------------------------------------");
 		// token是用户输入的用户名和密码 
 		// 第一步从token中取出用户名
 		String userCode = (String) token.getPrincipal();
@@ -162,7 +164,9 @@ public class CustomRealm extends AuthorizingRealm {
 		SimpleAuthenticationInfo simpleAuthenticationInfo =
 				new SimpleAuthenticationInfo(
 						activeUser, password, ByteSource.Util.bytes(salt), this.getName());
-
+		p.p("-------------------认证结束------------------------------------");
+		p.p("doGetAuthenticationInfo结束");
+		p.p("-------------------------------------------------------");
 		return simpleAuthenticationInfo;
 	}
 	
@@ -170,9 +174,9 @@ public class CustomRealm extends AuthorizingRealm {
 
 	// 用于授权
 	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(
+	public AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
-		p.p("-------------------------------------------------------");
+		p.p("-------------------授权开始------------------------------------");
 		p.p("doGetAuthorizationInfo开始");
 		p.p("-------------------------------------------------------");
 		//从 principals获取主身份信息

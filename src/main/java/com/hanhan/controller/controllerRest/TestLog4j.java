@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("f")
+//@RequestMapping("f")
 public class TestLog4j {
 
 private  org.apache.log4j.Logger l = org.apache.log4j.LogManager.getLogger(this.getClass().getName());

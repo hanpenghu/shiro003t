@@ -28,6 +28,11 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 		p.p("-------------------------------------------------------");
 		p.p("CustomFormAuthenticationFilter开始");
 		p.p("-------------------------------------------------------");
+
+
+
+
+
 //		//在这里进行验证码的校验
 //
 //		//从session获取正确验证码

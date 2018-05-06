@@ -57,13 +57,14 @@ logout	org.apache.shiro.web.filter.authc.LogoutFilter
                 <!-- 验证码，可匿名访问 -->
                 /validatecode.jsp = anon
                 /f/**=anon
+                /mobile=anon
                 <!-- 请求 logout.action地址，shiro去清除session-->
                 <!--/logout.action = logout-->
                 <!--商品查询需要商品查询权限 ，取消url拦截配置，使用注解授权方式 -->
                 <!-- /items/queryItems.action = perms[item:query]
                 /items/editItems.action = perms[item:edit] -->
                 <!-- 配置记住我或认证通过可以访问的地址 -->
-
+                <!--/login.action=anon  不能配置loginUrl为匿名,因为上面规定了这个是login页面-->
                 /index.jsp= user
                 /WEB-INF/jsp/*=user
 
